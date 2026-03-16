@@ -49,6 +49,10 @@ function createScene() {
     carImage.classList.add("car")
     track.append(carImage)
 
+    const name = document.createElement("p")
+    name.innerText = car.name
+    name.classList.add("name")
+    track.append(name)
 
 
     scene.append(track)
