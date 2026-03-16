@@ -42,6 +42,7 @@ function createScene() {
   cars.forEach(car => {
     const track = document.createElement("div")
     track.classList.add("track")
+    track.style.background = car.trackColor
     scene.append(track)
 
   })
