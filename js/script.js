@@ -43,6 +43,14 @@ function createScene() {
     const track = document.createElement("div")
     track.classList.add("track")
     track.style.background = car.trackColor
+
+    const carImage = document.createElement("img")
+    carImage.src = `./img/${car.id}.png` // "./img/" + car.id + ".png"
+    carImage.classList.add("car")
+    track.append(carImage)
+
+
+
     scene.append(track)
 
   })
