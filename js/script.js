@@ -1,4 +1,5 @@
 const scene = document.getElementById("scene")
+const startButton = document.getElementById("start")
 
 
 //DATASET
@@ -40,6 +41,13 @@ const cars = [
 function createScene() {
 
   cars.forEach(car => {
+
+
+    car.currentPosition = 0
+    car.time = 0
+    car.increment = getRandom(10, 60)
+
+
     const track = document.createElement("div")
     track.classList.add("track")
     track.style.background = car.trackColor
@@ -60,5 +68,29 @@ function createScene() {
   })
 
 }
+
+function getRandom(min, max) {
+
+  const number = Math.floor(Math.random() * (max - min + 1)) + min
+
+  return number
+}
+
+startButton.addEventListener("click", () => {
+
+  const startCar = setInterval(function () {
+
+    cars.forEach(car => {
+      car.currentPosition += car.increment
+
+
+    }
+
+    )
+
+  }, 1000)
+
+
+})
 
 createScene()
