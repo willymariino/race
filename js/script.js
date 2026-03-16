@@ -1,4 +1,5 @@
-console.log("JS Loading");
+const scene = document.getElementById("scene")
+
 
 //DATASET
 const cars = [
@@ -35,3 +36,16 @@ const cars = [
     time: 0,
   },
 ];
+
+function createScene() {
+
+  cars.forEach(car => {
+    const track = document.createElement("div")
+    track.classList.add("track")
+    scene.append(track)
+
+  })
+
+}
+
+createScene()
