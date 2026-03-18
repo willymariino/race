@@ -55,6 +55,7 @@ function createScene() {
     const carImage = document.createElement("img")
     carImage.src = `./img/${car.id}.png` // "./img/" + car.id + ".png"
     carImage.classList.add("car")
+    carImage.id = car.id
     track.append(carImage)
 
     const name = document.createElement("p")
@@ -83,12 +84,16 @@ startButton.addEventListener("click", () => {
     cars.forEach(car => {
       car.currentPosition += car.increment
 
+      if (car.currentPosition >= 800) {
+        clearInterval(startCar)
+        document.getElementById(car.id).style.left = "805px"
+      }
+      else {
+        document.getElementById(car.id).style.left = car.currentPosition + "px"
+      }
+    })
 
-    }
-
-    )
-
-  }, 1000)
+  }, 100)
 
 
 })
