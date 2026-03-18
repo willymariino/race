@@ -1,6 +1,8 @@
 const scene = document.getElementById("scene")
 const startButton = document.getElementById("start")
+const result = document.getElementById("results")
 
+let isGameOver = false
 
 //DATASET
 const cars = [
@@ -79,23 +81,41 @@ function getRandom(min, max) {
 
 startButton.addEventListener("click", () => {
 
-  const startCar = setInterval(function () {
+  const refresh = 123
 
-    cars.forEach(car => {
-      car.currentPosition += car.increment
+  if (isGameOver === false) {
 
-      if (car.currentPosition >= 800) {
-        clearInterval(startCar)
-        document.getElementById(car.id).style.left = "805px"
-      }
-      else {
-        document.getElementById(car.id).style.left = car.currentPosition + "px"
-      }
-    })
+    const startCar = setInterval(function () {
 
-  }, 100)
+      cars.forEach(car => {
+        car.currentPosition += car.increment
+        car.time += refresh
 
+        if (car.currentPosition >= 800) {
+          clearInterval(startCar)
+          document.getElementById(car.id).style.left = "805px"
+          gameOver()
+        }
+        else {
+          document.getElementById(car.id).style.left = car.currentPosition + "px"
+        }
+      })
+
+    }, refresh)
+  }
 
 })
+
+function gameOver() {
+  isGameOver = true
+
+  const sortedResult = cars.sort((a, b) => a.time - b.time)
+
+  result.innerHTML = ""
+  sortedResult.forEach((element, index) => {
+    result.innerHTML += `<div class="${index === 0 ? 'winner' : ''}">${element.name} ${(element.time / 1000).toFixed(3)} </div>`
+  });
+
+}
 
 createScene()
